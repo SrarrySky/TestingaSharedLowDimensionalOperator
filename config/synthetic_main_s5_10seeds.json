@@ -1,0 +1,64 @@
+{
+  "purpose": "benchmark",
+  "scenarios": ["s5"],
+  "seeds": [7, 19, 31, 42, 43, 44, 45, 46, 47, 48],
+  "T": 1200,
+  "n": 8,
+  "lag": 2,
+  "train_count": 720,
+  "validation_count": 240,
+  "methods": ["static", "sparse", "tvp", "smooth", "network", "hmm", "dlc"],
+  "baselines": {
+    "lags": [1, 2, 3],
+    "ridges": [0.01, 0.1, 1.0],
+    "lasso_alphas": [0.001, 0.01],
+    "process_variances": [0.000001, 0.00001, 0.0001],
+    "smooth_lag": 1,
+    "smooth_bandwidths": [126, 252],
+    "smooth_ridge": 1.0,
+    "horizon": 10,
+    "n_regimes": 3,
+    "hmm_n_init": 5,
+    "hmm_n_iter": 200
+  },
+  "dlc": {
+    "seed": 42,
+    "lag": 2,
+    "state_dimension": 2,
+    "selection": {"covariate_policy": "persistence"},
+    "fit": {
+      "max_em_iterations": 80,
+      "min_em_iterations": 5,
+      "tolerance": 0.00001,
+      "prox_iterations": 200,
+      "covariance_jitter": 0.000001,
+      "diagonal_observation_covariance": true,
+      "canonicalize_after_fit": true
+    },
+    "penalty": {"tier_b_multiplier": 2.0, "group": 0.001, "state_l1": 0.0005, "ridge": 0.000001},
+    "stability": {
+      "validation_reject_if_spectral_radius_above": 1.02,
+      "diagnostic_state_quantiles": [0.05, 0.5, 0.95]
+    },
+    "hyperparameter_grid": {
+      "state_dimension": [1, 2, 3],
+      "lag": [1, 2, 3],
+      "group_penalty": [0.0003, 0.001, 0.003],
+      "state_l1_penalty": [0.0001, 0.0005, 0.001]
+    }
+  },
+  "support": {
+    "method": "linear_lasso",
+    "seed": 42,
+    "lag": 2,
+    "bootstrap_count": 100,
+    "block_length": 20,
+    "bootstrap_mode": "moving_block",
+    "stability_threshold": 0.7,
+    "union_screen_threshold": 0.5,
+    "support_mode": "union",
+    "rolling_contexts": 3,
+    "parallel": {"n_jobs": 2, "backend": "loky", "inner_max_num_threads": 1},
+    "linear_lasso": {"alpha": 0.0025, "max_iter": 10000, "coef_zero_tolerance": 0.000000000001}
+  }
+}

@@ -1,0 +1,45 @@
+seed: 42
+
+# Exploratory LPCMCI path (empty support on real data; LC2 sensitivity branch).
+method: lpcmci
+
+lag: 3
+bootstrap_count: 100
+block_length: 20
+bootstrap_mode: moving_block
+stability_threshold: 0.70
+union_screen_threshold: 0.50
+support_mode: union
+rolling_contexts: 3
+
+parallel:
+  n_jobs: 8
+  backend: loky
+  inner_max_num_threads: 1
+  verbose: 10
+  # Share one worker pool across global and rolling contexts.
+  context_scope: shared
+
+lpcmci:
+  pc_alpha: 0.05
+  # Lagged directional support only.
+  tau_min: 1
+  ci_test: parcorr
+  significance: analytic
+  # Explicit per-bootstrap BH gate.
+  fdr_method: fdr_bh
+  fdr_alpha: 0.05
+  # Exact publication tier semantics.
+  tier_a_marks: ["-->"]
+  tier_b_marks: ["o->"]
+  tier_c_marks: ["<->"]
+  tier_d_marks: ["o-o", "x-x", "x?x"]
+  include_tier_b: true
+
+linear_lasso:
+  alpha: 0.0025
+  max_iter: 10000
+  coef_zero_tolerance: 1.0e-12
+
+output:
+  save_edge_table: true

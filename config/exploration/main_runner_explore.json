@@ -1,0 +1,72 @@
+{
+  "version": "main-runner-v1",
+  "experiment": "dlcssm_main_explore",
+  "purpose": "publication",
+  "seed": 42,
+  "threads": 32,
+  "inner_threads": 1,
+  "publication_mode": true,
+  "stages": {
+    "synthetic": {
+      "config": "config/synthetic_main.json",
+      "enabled": true,
+      "required": true
+    },
+    "real_data": {
+      "dataset": "data/processed/dataset.npz",
+      "data_config": "config/data.yaml",
+      "prepare": false,
+      "enabled": true,
+      "required": true
+    },
+    "causal_support": {
+      "dataset": "data/processed/dataset.npz",
+      "causal_config": "config/exploration/causal_explore.yaml",
+      "model_config": "config/dlcssm.yaml",
+      "enabled": true,
+      "required": true
+    },
+    "model": {
+      "dataset": "data/processed/dataset.npz",
+      "model_config": "config/dlcssm.yaml",
+      "enabled": true,
+      "required": true
+    },
+    "baselines": {
+      "dataset": "data/processed/dataset.npz",
+      "config": "config/baselines.json",
+      "enabled": true,
+      "required": true
+    },
+    "oos": {
+      "dataset": "data/processed/dataset.npz",
+      "feature_config": "config/oos_final.json",
+      "predictive_config": "config/oos_predictive.json",
+      "enabled": true,
+      "required": true
+    },
+    "geometry": {
+      "enabled": true,
+      "required": true,
+      "horizon": 10,
+      "block_length": 20,
+      "bootstrap_count": 1000,
+      "seed": 42
+    },
+    "ablation_falsification": {
+      "dataset": "data/processed/dataset.npz",
+      "horizon": 5,
+      "seed": 42,
+      "enabled": true,
+      "required": true
+    },
+    "coverage": {
+      "enabled": true,
+      "required": true
+    }
+  },
+  "metadata": {
+    "release": "main",
+    "claim_policy": "No publication claim is emitted by this orchestrator; complete the result audit against Write/supplement/ before release."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": "main-runner-v1",
+  "experiment": "dlcssm_main_smoke",
+  "purpose": "engineering_smoke",
+  "seed": 7,
+  "threads": 1,
+  "inner_threads": 1,
+  "publication_mode": false,
+  "required_stages": ["synthetic", "coverage"],
+  "stages": {
+    "synthetic": {
+      "config": "config/synthetic_smoke.json",
+      "enabled": true,
+      "required": true
+    },
+    "real_data": {"enabled": false, "required": false},
+    "causal_support": {"enabled": false, "required": false},
+    "model": {"enabled": false, "required": false},
+    "baselines": {"enabled": false, "required": false},
+    "oos": {"enabled": false, "required": false},
+    "geometry": {"enabled": false, "required": false},
+    "ablation_falsification": {"enabled": false, "required": false},
+    "coverage": {"enabled": true, "required": true}
+  },
+  "metadata": {"release": "engineering_smoke", "not_publication_result": true}
+}

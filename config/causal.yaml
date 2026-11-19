@@ -1,0 +1,24 @@
+# Formal causal-support configuration (main empirical results).
+#
+# Lasso stability selection on daily standardized sector returns.
+# alpha=0.02 with a 0.70 stability threshold (~160 directed edges).
+seed: 42
+method: linear_lasso
+lag: 3
+bootstrap_count: 100
+block_length: 20
+bootstrap_mode: moving_block
+support_mode: stable
+stability_threshold: 0.70
+union_screen_threshold: 0.70
+
+parallel:
+  n_jobs: 2
+  backend: loky
+  inner_max_num_threads: 1
+  verbose: 0
+
+linear_lasso:
+  alpha: 0.02
+  max_iter: 10000
+  coef_zero_tolerance: 1.0e-12

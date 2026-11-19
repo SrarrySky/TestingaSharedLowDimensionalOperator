@@ -1,0 +1,14 @@
+{
+  "horizon": 5,
+  "correlation_window": 20,
+  "n_regimes": 3,
+  "discount": 0.95,
+  "susceptibility_epsilon": 1e-10,
+  "future_u": "persistence",
+  "include_bk": false,
+  "predictive_draws": 256,
+  "predictive_seed": 0,
+  "predictive_credible": 0.95,
+  "path_gain_threshold": 1.0,
+  "migration_gap_threshold": 1.0
+}

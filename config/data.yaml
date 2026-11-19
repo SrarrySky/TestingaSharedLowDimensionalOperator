@@ -1,0 +1,55 @@
+seed: 42
+provider: tushare
+token_env: TUSHARE_TOKEN
+
+date_range:
+  start: "20120101"
+  end: "20260831"
+
+splits:
+  train:
+    start: "2014-03-01"
+    end: "2019-12-31"
+  validation:
+    start: "2020-01-01"
+    end: "2022-12-31"
+  test:
+    start: "2023-01-01"
+    end: "2026-08-31"
+
+industry:
+  taxonomy: SW2021
+  level: L1
+  require_published: true
+  expected_count_min: 28
+  expected_count_max: 31
+
+market:
+  broad_index: "000300.SH"
+  include_fx: false
+  fx_code: "USDCNH.FXCM"
+  fx_shift_calendar_days: 1
+
+preprocess:
+  missing_policy: drop_dates
+  min_sector_history_fraction: 0.98
+  realized_vol_window: 20
+  standardize_returns: true
+  standardize_covariates: true
+  covariates:
+    - market_return
+    - realized_volatility
+    - turnover_proxy
+    - cross_sectional_dispersion
+
+storage:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  dataset_file: data/processed/dataset.npz
+  metadata_file: data/processed/dataset_metadata.json
+
+api:
+  retries: 5
+  base_backoff_seconds: 1.0
+  request_pause_seconds: 0.15
