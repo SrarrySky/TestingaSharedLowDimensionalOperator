@@ -485,7 +485,7 @@ with a positive-eigenvalue floor (and, when configured, a diagonal restriction).
 Let $T\in\mathbb R^{d\times d}$ be nonsingular and define
 
 $$
-z_t^*=Tz_t.
+z_t^{\ast}=Tz_t.
 \tag{6.1}
 $$
 
@@ -493,13 +493,13 @@ The complete transformed parameter set is
 
 $$
 \begin{aligned}
-\mathcal B^*&=\mathcal BT^{-1},
-&\Lambda^*&=\Lambda T^{-1},\cr
-F^*&=TFT^{-1},
-&G^*&=TG,\cr
-Q^*&=TQT^\top,
-&m_0^*&=Tm_0,\cr
-P_0^*&=TP_0T^\top.
+\mathcal B^{\ast}&=\mathcal BT^{-1},
+&\Lambda^{\ast}&=\Lambda T^{-1},\cr
+F^{\ast}&=TFT^{-1},
+&G^{\ast}&=TG,\cr
+Q^{\ast}&=TQT^\top,
+&m_0^{\ast}&=Tm_0,\cr
+P_0^{\ast}&=TP_0T^\top.
 \end{aligned}
 \tag{6.2}
 $$
@@ -510,9 +510,9 @@ Multiplying the original state equation by $T$ gives
 
 $$
 \begin{aligned}
-z_t^*
+z_t^{\ast}
 &=TFz_{t-1}+TGu_t+T\eta_t\cr
-&=(TFT^{-1})z_{t-1}^*+(TG)u_t+\eta_t^*,
+&=(TFT^{-1})z_{t-1}^{\ast}+(TG)u_t+\eta_t^{\ast},
 \end{aligned}
 \tag{6.3}
 $$
@@ -520,8 +520,8 @@ $$
 where
 
 $$
-\eta_t^*=T\eta_t\sim\mathcal N(0,TQT^\top)
-=\mathcal N(0,Q^*).
+\eta_t^{\ast}=T\eta_t\sim\mathcal N(0,TQT^\top)
+=\mathcal N(0,Q^{\ast}).
 \tag{6.4}
 $$
 
@@ -532,7 +532,7 @@ Thus the transformed state process has exactly the same form.
 The varying coefficient vector satisfies
 
 $$
-\mathcal B^*z_t^*
+\mathcal B^{\ast}z_t^{\ast}
 =\mathcal BT^{-1}Tz_t
 =\mathcal Bz_t.
 \tag{6.5}
@@ -541,7 +541,7 @@ $$
 Similarly,
 
 $$
-\Lambda^*z_t^*=\Lambda T^{-1}Tz_t=\Lambda z_t.
+\Lambda^{\ast}z_t^{\ast}=\Lambda T^{-1}Tz_t=\Lambda z_t.
 \tag{6.6}
 $$
 
@@ -550,7 +550,7 @@ Therefore every conditional mean of $x_t$, every lagged operator $A_\ell(z_t)$, 
 Finally, right multiplication by an invertible matrix does not alter a matrix's column space:
 
 $$
-\mathrm{Range}(\mathcal B^*)
+\mathrm{Range}(\mathcal B^{\ast})
 =\lbrace\mathcal BT^{-1}v:v\in\mathbb R^d\rbrace
 =\lbrace\mathcal Bw:w\in\mathbb R^d\rbrace
 =\mathrm{Range}(\mathcal B).
@@ -561,7 +561,7 @@ This proves Proposition 1.
 
 ### 6.4 Why fixing $Q=I_d$ leaves an orthogonal ambiguity
 
-Suppose both the original and transformed representations satisfy $Q=Q^*=I_d$. From (6.2),
+Suppose both the original and transformed representations satisfy $Q=Q^{\ast}=I_d$. From (6.2),
 
 $$
 I_d=T I_d T^\top=TT^\top.
@@ -1337,7 +1337,7 @@ Thus $R_{A\to B}>0$ means that the candidate has lower MSE, while a negative val
 Let $L$ be the block length. A bootstrap draw samples starting indices and concatenates overlapping consecutive Test blocks until $n$ indices have been collected. Crucially, the same index vector $I_b$ is applied to both models. For draw $b$, compute
 
 $$
-R_{A\to B}^{*(b)}
+R_{A\to B}^{\ast(b)}
 =1-
 \frac{|I_b|^{-1}\sum_{t\in I_b}\ell_{B,t}}
      {|I_b|^{-1}\sum_{t\in I_b}\ell_{A,t}}.
@@ -1348,8 +1348,8 @@ The pointwise $100(1-\gamma)$% percentile interval is
 
 $$
 \left[
-q_{\gamma/2}\lbrace R_{A\to B}^{*(b)}\rbrace,
-q_{1-\gamma/2}\lbrace R_{A\to B}^{*(b)}\rbrace
+q_{\gamma/2}\lbrace R_{A\to B}^{\ast(b)}\rbrace,
+q_{1-\gamma/2}\lbrace R_{A\to B}^{\ast(b)}\rbrace
 \right].
 \tag{16.9}
 $$
