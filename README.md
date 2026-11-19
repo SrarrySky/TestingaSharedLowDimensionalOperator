@@ -1,6 +1,6 @@
 # Testing a Shared Low-Dimensional Operator Representation
 
-Research code for *Testing a Shared Low-Dimensional Operator Representation for Time-Varying Financial Dynamics* by Jiyu Mo and Dongyang Kuang, prepared for an ICMLC 2027 submission. It tests whether time-varying sector-return operators can be represented by a shared low-dimensional latent state, and studies the resulting propagation geometry and five-day downside prediction.
+Research code for *Testing a Shared Low-Dimensional Operator Representation for Time-Varying Financial Dynamics* by Jiyu Mo and Dongyang Kuang. It tests whether time-varying sector-return operators can be represented by a shared low-dimensional latent state, and studies the resulting propagation geometry and five-day downside prediction.
 
 ## 🧭 Mechanistic overview
 
