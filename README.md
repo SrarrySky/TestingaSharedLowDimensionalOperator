@@ -196,7 +196,7 @@ Each model contains all factors in the preceding model:
 The broad-market return is \(r_t^{mkt}=P_t/P_{t-1}-1\). With the default window \(w=20\), realized volatility is
 
 $$
-RV_t=\sqrt{252}\;\operatorname{sd}
+RV_t=\sqrt{252}\;\mathrm{sd}
 \left(r_{t-w+1}^{mkt},\ldots,r_t^{mkt}\right),
 $$
 
@@ -204,7 +204,7 @@ using the sample standard deviation. Average correlation is the mean of all dist
 
 $$
 \bar\rho_t=\frac{2}{N(N-1)}\sum_{i<j}
-\operatorname{corr}\!\left(x_{i,t-w+1:t},x_{j,t-w+1:t}\right).
+\mathrm{corr}\!\left(x_{i,t-w+1:t},x_{j,t-w+1:t}\right).
 $$
 
 The turnover proxy is the cross-sector median of `amount / float_mv` on date \(t\). If floating market value is unavailable, the data builder uses the cross-sector median of `log1p(amount)` instead.
@@ -249,7 +249,7 @@ $$
 The TVP innovation-risk factor is the mean-sector \(H\)-step forecast-error variance in raw return-squared units,
 
 $$
-R_t^{TVP}(H)=\frac{1}{N}\operatorname{tr}\!\left[
+R_t^{TVP}(H)=\frac{1}{N}\mathrm{tr}\!\left[
 \sum_{h=0}^{H-1}\Psi_{t,h}\Sigma\Psi_{t,h}^{\top}\right].
 $$
 

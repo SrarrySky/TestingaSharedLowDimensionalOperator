@@ -183,7 +183,7 @@ The two terms on the right are conditionally independent, so
 
 \[
 S_t
-=\operatorname{Var}(v_t\mid\mathcal F_{t-1})
+=\mathrm{Var}(v_t\mid\mathcal F_{t-1})
 =H_tP_t^-H_t^\top+R.
 \tag{3.6}
 \]
@@ -454,15 +454,15 @@ With \(R\) fixed, the gradient of the smooth expected observation objective is
 A proximal-gradient step first moves along \(-\nabla_\Theta\). For each active edge, the state-dependent entries receive scalar soft-thresholding for the \(\ell_1\) term,
 
 \[
-\operatorname{soft}(b,\tau\lambda_B)
-=\operatorname{sign}(b)(|b|-\tau\lambda_B)_+,
+\mathrm{soft}(b,\tau\lambda_B)
+=\mathrm{sign}(b)(|b|-\tau\lambda_B)_+,
 \tag{5.14}
 \]
 
 followed by group shrinkage of the concatenated baseline and state-dependent edge vector \(g\):
 
 \[
-\operatorname{prox}_{\tau\lambda_g\|\cdot\|_2}(g)
+\mathrm{prox}_{\tau\lambda_g\|\cdot\|_2}(g)
 =\left(1-\frac{\tau\lambda_g}{\|g\|_2}\right)_+g.
 \tag{5.15}
 \]
@@ -550,10 +550,10 @@ Therefore every conditional mean of \(x_t\), every lagged operator \(A_\ell(z_t)
 Finally, right multiplication by an invertible matrix does not alter a matrix's column space:
 
 \[
-\operatorname{Range}(\mathcal B^*)
+\mathrm{Range}(\mathcal B^*)
 =\{\mathcal BT^{-1}v:v\in\mathbb R^d\}
 =\{\mathcal Bw:w\in\mathbb R^d\}
-=\operatorname{Range}(\mathcal B).
+=\mathrm{Range}(\mathcal B).
 \tag{6.7}
 \]
 
@@ -627,14 +627,14 @@ Then
 Since right multiplication by the invertible \(\Sigma_{\Delta z}^{1/2}\) preserves rank,
 
 \[
-\operatorname{rank}(V)=\operatorname{rank}(\mathcal B)=d.
+\mathrm{rank}(V)=\mathrm{rank}(\mathcal B)=d.
 \tag{7.6}
 \]
 
 For any matrix \(V\),
 
 \[
-\operatorname{Null}(VV^\top)=\operatorname{Null}(V^\top),
+\mathrm{Null}(VV^\top)=\mathrm{Null}(V^\top),
 \tag{7.7}
 \]
 
@@ -648,9 +648,9 @@ y^\top VV^\top y=\|V^\top y\|_2^2.
 Applying rank-nullity to (7.7) gives
 
 \[
-\operatorname{rank}(\Sigma_{\Delta a})
-=\operatorname{rank}(VV^\top)
-=\operatorname{rank}(V)=d.
+\mathrm{rank}(\Sigma_{\Delta a})
+=\mathrm{rank}(VV^\top)
+=\mathrm{rank}(V)=d.
 \tag{7.9}
 \]
 
@@ -659,22 +659,22 @@ Applying rank-nullity to (7.7) gives
 Both \(VV^\top\) and \(V\) have rank \(d\), and
 
 \[
-\operatorname{Range}(VV^\top)\subseteq\operatorname{Range}(V).
+\mathrm{Range}(VV^\top)\subseteq\mathrm{Range}(V).
 \tag{7.10}
 \]
 
 The inclusion is between spaces of the same dimension, so equality holds. Also, invertibility of \(\Sigma_{\Delta z}^{1/2}\) gives
 
 \[
-\operatorname{Range}(V)=\operatorname{Range}(\mathcal B).
+\mathrm{Range}(V)=\mathrm{Range}(\mathcal B).
 \tag{7.11}
 \]
 
 Combining (7.10)--(7.11),
 
 \[
-\operatorname{Range}(\Sigma_{\Delta a})
-=\operatorname{Range}(\mathcal B).
+\mathrm{Range}(\Sigma_{\Delta a})
+=\mathrm{Range}(\mathcal B).
 \tag{7.12}
 \]
 
@@ -685,10 +685,10 @@ Equations (7.3), (7.9), and (7.12) prove Proposition 2.
 Without either assumption,
 
 \[
-\operatorname{rank}(\Sigma_{\Delta a})
+\mathrm{rank}(\Sigma_{\Delta a})
 \le
-\min\{\operatorname{rank}(\mathcal B),
-       \operatorname{rank}(\Sigma_{\Delta z})\}
+\min\{\mathrm{rank}(\mathcal B),
+       \mathrm{rank}(\Sigma_{\Delta z})\}
 \le d.
 \tag{7.13}
 \]
@@ -717,7 +717,7 @@ D=
 If
 
 \[
-D=U\operatorname{diag}(s_1,\ldots,s_r)V^\top,
+D=U\mathrm{diag}(s_1,\ldots,s_r)V^\top,
 \qquad s_1\ge\cdots\ge s_r\ge0,
 \tag{8.2}
 \]
@@ -727,7 +727,7 @@ then the sample covariance is
 \[
 \widehat\Sigma_{\Delta a}
 =\frac{D^\top D}{T-2}
-=V\operatorname{diag}\!\left(
+=V\mathrm{diag}\!\left(
 \frac{s_1^2}{T-2},\ldots,\frac{s_r^2}{T-2}
 \right)V^\top.
 \tag{8.3}
@@ -736,7 +736,7 @@ then the sample covariance is
 Thus the leading right singular vectors estimate the leading coefficient subspace. The variance share explained by the first \(d\) directions is
 
 \[
-\operatorname{EVR}_d
+\mathrm{EVR}_d
 =\frac{\sum_{j=1}^d s_j^2}{\sum_{j=1}^r s_j^2}.
 \tag{8.4}
 \]
