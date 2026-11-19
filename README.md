@@ -6,7 +6,7 @@ Research code for *Testing a Shared Low-Dimensional Operator Representation for 
 
 ![Mechanistic overview of the Shared Low-Dimensional Operator State-Space Model and its two diagnostic frameworks](docs/assets/FrameWork.jpg)
 
-**Figure 1. Mechanistic overview of the Shared Low-Dimensional Operator State-Space Model (DLC-SSM) and its two separate diagnostic frameworks.** (a) **Shared Latent Operator SSM:** Observed covariates $u_t$ drive a $d$-dimensional latent state $z_t \in \mathbb{R}^d$, which modulates a shared basis $\{B_r\}_{r=1}^d$ over a screened sparse support to form time-varying sector interaction operators $A(z_t) = A_0 + \sum_{r=1}^d z_{r,t} B_r$, mapping lagged sector returns $x_{t-l}$ to $x_t$. (b) **Falsifiable Low-Rank Subspace Test (Propositions 1–2):** Under the affine operator hypothesis, coefficient-increment covariance $\Sigma_{\Delta a}$ has rank $d$ and lies within the invariant subspace $\text{Range}(\mathcal{B}) \subset \mathbb{R}^p$; empirical validity is tested via principal angles ($\theta$) and projector distances against unrestricted cross-window subspaces. (c) **Chronological vs. Frozen Propagation (Proposition 3 & Corollary 1):** Finite-horizon propagation under the time-ordered operator product $\Phi_{t,h} = C_h \cdots C_1$ diverges from the forecast-origin frozen approximation $C_0^h$, inducing a migration gap $M_{H,t}$ bounded by cumulative latent-state movement $\sum_{m=1}^h \lVert z_{t+m} - z_t\rVert_2$. Solid orange arrows denote latent state modulation and time-varying operator evolution; solid blue arrows denote baseline/frozen pathways.
+**Figure 1. Mechanistic overview of the Shared Low-Dimensional Operator State-Space Model (DLC-SSM) and its two separate diagnostic frameworks.** (a) **Shared Latent Operator SSM:** Observed covariates $u_t$ drive a $d$-dimensional latent state $z_t \in \mathbb{R}^d$, which modulates a shared basis $\lbrace B_r\rbrace_{r=1}^d$ over a screened sparse support to form time-varying sector interaction operators $A(z_t) = A_0 + \sum_{r=1}^d z_{r,t} B_r$, mapping lagged sector returns $x_{t-l}$ to $x_t$. (b) **Falsifiable Low-Rank Subspace Test (Propositions 1–2):** Under the affine operator hypothesis, coefficient-increment covariance $\Sigma_{\Delta a}$ has rank $d$ and lies within the invariant subspace $\text{Range}(\mathcal{B}) \subset \mathbb{R}^p$; empirical validity is tested via principal angles ($\theta$) and projector distances against unrestricted cross-window subspaces. (c) **Chronological vs. Frozen Propagation (Proposition 3 & Corollary 1):** Finite-horizon propagation under the time-ordered operator product $\Phi_{t,h} = C_h \cdots C_1$ diverges from the forecast-origin frozen approximation $C_0^h$, inducing a migration gap $M_{H,t}$ bounded by cumulative latent-state movement $\sum_{m=1}^h \lVert z_{t+m} - z_t\rVert_2$. Solid orange arrows denote latent state modulation and time-varying operator evolution; solid blue arrows denote baseline/frozen pathways.
 
 The public repository contains the experiment code, configurations and documentation. Raw Tushare data, full local outputs and the manuscript working directory are not part of the public release. The post-acceptance S5 ten-seed extension and OOS block sensitivity have been verified in the local research workspace; [the reproducibility guide](docs/REPRODUCIBILITY.md#post-acceptance-supplement-experiments) explains how to generate and check those results independently. These later checks are separate from results reported in the published paper.
 
@@ -157,26 +157,26 @@ This section records the calculation contract used by the current OOS design. It
 
 ### Timing and operator notation
 
-Let \(x_t\in\mathbb{R}^N\) denote the sector-return vector and let \(\mathcal I_t\) contain information available through date \(t\). The DLC-SSM uses the state-dependent VAR coefficients
+Let $x_t\in\mathbb{R}^N$ denote the sector-return vector and let $\mathcal I_t$ contain information available through date $t$. The DLC-SSM uses the state-dependent VAR coefficients
 
 $$
 A_\ell(z_t)=A_{0,\ell}+\sum_{r=1}^{d}z_{t,r}B_{r,\ell},
 \qquad \ell=1,\ldots,L,
 $$
 
-and their \(NL\times NL\) companion matrix \(C_t=C(z_t)\). The state used at an OOS origin is the forward-filtered posterior \(z_t\mid\mathcal I_t\sim\mathcal N(\hat z_t,P_t)\); no smoothed state is used. Let \(J=[I_N,0,\ldots,0]\) select the contemporaneous sector block, and let \(\lVert\cdot\rVert_2\) and \(\lVert\cdot\rVert_F\) denote the spectral and Frobenius norms.
+and their $NL\times NL$ companion matrix $C_t=C(z_t)$. The state used at an OOS origin is the forward-filtered posterior $z_t\mid\mathcal I_t\sim\mathcal N(\hat z_t,P_t)$; no smoothed state is used. Let $J=[I_N,0,\ldots,0]$ select the contemporaneous sector block, and let $\lVert\cdot\rVert_2$ and $\lVert\cdot\rVert_F$ denote the spectral and Frobenius norms.
 
 ### Five-day downside target
 
-For the raw broad-market simple return \(r_t^{mkt}\), the target attached to origin \(t\) is the *future* downside semivariance
+For the raw broad-market simple return $r_t^{mkt}$, the target attached to origin $t$ is the *future* downside semivariance
 
 $$
 Y_{t,H}=\frac{1}{H}\sum_{h=1}^{H}
-\left[\min\!\left(r_{t+h}^{mkt},0\right)\right]^2,
+\left[\min\negthinspace\left(r_{t+h}^{mkt},0\right)\right]^2,
 \qquad H=5.
 $$
 
-Thus the label uses exactly the next five trading observations \(t+1,\ldots,t+5\), not the preceding five-day window. Positive returns contribute zero; negative returns contribute their squared magnitude. The quantity is nonnegative and is neither a drawdown nor expected shortfall. Labels whose five-day horizon crosses a Train/Validation/Test boundary are excluded. The implementation reconstructs the raw market return before forming the label; standardized returns are not used in this equation.
+Thus the label uses exactly the next five trading observations $t+1,\ldots,t+5$, not the preceding five-day window. Positive returns contribute zero; negative returns contribute their squared magnitude. The quantity is nonnegative and is neither a drawdown nor expected shortfall. Labels whose five-day horizon crosses a Train/Validation/Test boundary are excluded. The implementation reconstructs the raw market return before forming the label; standardized returns are not used in this equation.
 
 ### Nested M0--M5 factor blocks
 
@@ -185,7 +185,7 @@ Each model contains all factors in the preceding model:
 | Model | Newly added factors |
 |---|---|
 | M0 | Market return, realized volatility, average sector correlation, turnover proxy |
-| M1 | \(K-1\) filtered HMM regime probabilities; \(K=3\) by default |
+| M1 | $K-1$ filtered HMM regime probabilities; $K=3$ by default |
 | M2 | Five-step Diebold--Yilmaz connectedness and TVP-VAR innovation risk |
 | M3 | Spectral radius, companion nonnormality, and frozen-operator peak gain |
 | M4 | Posterior-predictive state-migration gap |
@@ -193,10 +193,10 @@ Each model contains all factors in the preceding model:
 
 #### M0: observable controls
 
-The broad-market return is \(r_t^{mkt}=P_t/P_{t-1}-1\). With the default window \(w=20\), realized volatility is
+The broad-market return is $r_t^{mkt}=P_t/P_{t-1}-1$. With the default window $w=20$, realized volatility is
 
 $$
-RV_t=\sqrt{252}\;\mathrm{sd}
+RV_t=\sqrt{252}\thickspace\mathrm{sd}
 \left(r_{t-w+1}^{mkt},\ldots,r_t^{mkt}\right),
 $$
 
@@ -204,31 +204,31 @@ using the sample standard deviation. Average correlation is the mean of all dist
 
 $$
 \bar\rho_t=\frac{2}{N(N-1)}\sum_{i<j}
-\mathrm{corr}\!\left(x_{i,t-w+1:t},x_{j,t-w+1:t}\right).
+\mathrm{corr}\negthinspace\left(x_{i,t-w+1:t},x_{j,t-w+1:t}\right).
 $$
 
-The turnover proxy is the cross-sector median of `amount / float_mv` on date \(t\). If floating market value is unavailable, the data builder uses the cross-sector median of `log1p(amount)` instead.
+The turnover proxy is the cross-sector median of `amount / float_mv` on date $t$. If floating market value is unavailable, the data builder uses the cross-sector median of `log1p(amount)` instead.
 
 #### M1: filtered HMM regime probabilities
 
-For HMM state \(s_t\in\{1,\ldots,K\}\), the factor is the one-sided filtered probability
+For HMM state $s_t\in\lbrace1,\ldots,K\rbrace$, the factor is the one-sided filtered probability
 
 $$
 p_{t,k}=\Pr(s_t=k\mid\mathcal I_t),\qquad k=1,\ldots,K-1.
 $$
 
-Only \(K-1\) probabilities enter the regression because the probabilities sum to one and the regression includes an intercept. These are close-\(t\) filtered probabilities, not backward-smoothed probabilities.
+Only $K-1$ probabilities enter the regression because the probabilities sum to one and the regression includes an intercept. These are close-$t$ filtered probabilities, not backward-smoothed probabilities.
 
 #### M2: conventional dynamic benchmarks
 
-For current TVP-VAR coefficients \(A_{t,\ell}\), define \(\Psi_{t,0}=I_N\) and
+For current TVP-VAR coefficients $A_{t,\ell}$, define $\Psi_{t,0}=I_N$ and
 
 $$
 \Psi_{t,h}=\sum_{\ell=1}^{\min(L,h)}
 A_{t,\ell}\Psi_{t,h-\ell}.
 $$
 
-With innovation covariance \(\Sigma\), the generalized forecast-error variance share is
+With innovation covariance $\Sigma$, the generalized forecast-error variance share is
 
 $$
 \theta^{raw}_{ij}(H)=
@@ -246,10 +246,10 @@ $$
 TCI_t(H)=\frac{100}{N}\sum_i\sum_{j\ne i}\tilde\theta_{ij}(H).
 $$
 
-The TVP innovation-risk factor is the mean-sector \(H\)-step forecast-error variance in raw return-squared units,
+The TVP innovation-risk factor is the mean-sector $H$-step forecast-error variance in raw return-squared units,
 
 $$
-R_t^{TVP}(H)=\frac{1}{N}\mathrm{tr}\!\left[
+R_t^{TVP}(H)=\frac{1}{N}\mathrm{tr}\negthinspace\left[
 \sum_{h=0}^{H-1}\Psi_{t,h}\Sigma\Psi_{t,h}^{\top}\right].
 $$
 
@@ -257,7 +257,7 @@ It freezes the current TVP coefficients over the horizon and does not include fu
 
 #### M3: frozen state-dependent operator geometry
 
-At the filtered state mean, set \(C_t=C(\hat z_t)\). The three M3 factors are
+At the filtered state mean, set $C_t=C(\hat z_t)$. The three M3 factors are
 
 $$
 \rho_t=\max_j|\lambda_j(C_t)|,
@@ -278,14 +278,14 @@ The gain is computed on the full companion operator and keeps the state fixed at
 
 #### M4: posterior-predictive state-migration gap
 
-For draw \(b\), first sample \(z_t^{(b)}\sim\mathcal N(\hat z_t,P_t)\), then propagate
+For draw $b$, first sample $z_t^{(b)}\sim\mathcal N(\hat z_t,P_t)$, then propagate
 
 $$
 z_{t+h}^{(b)}=Fz_{t+h-1}^{(b)}+Gu_t+q_{t+h}^{(b)},
 \qquad q_{t+h}^{(b)}\sim\mathcal N(0,Q),
 $$
 
-where the current standardized covariate \(u_t\) is persisted over all futuresteps. Define
+where the current standardized covariate $u_t$ is persisted over all futuresteps. Define
 
 $$
 \Phi_{t,h}^{(b)}=C(z_{t+h}^{(b)})\cdots C(z_{t+1}^{(b)}),
@@ -298,18 +298,18 @@ M_t^{(b)}(H)=\max_{1\le h\le H}
 \left\lVert\Phi_{t,h}^{(b)}-C(z_t^{(b)})^h\right\rVert_2.
 $$
 
-The M4 regression factor is \(B^{-1}\sum_{b=1}^{B}M_t^{(b)}(H)\), with \(B=256\) by default. The norm and maximum are taken separately within each path before averaging. This posterior-predictive uncertainty includes filtered-state and future process uncertainty conditional on fitted parameters; it does not include parameter estimation uncertainty.
+The M4 regression factor is $B^{-1}\sum_{b=1}^{B}M_t^{(b)}(H)$, with $B=256$ by default. The norm and maximum are taken separately within each path before averaging. This posterior-predictive uncertainty includes filtered-state and future process uncertainty conditional on fitted parameters; it does not include parameter estimation uncertainty.
 
 #### M5: state susceptibility
 
-Let \(C_r=\partial C(z)/\partial z_r\) and \(D_{r,h}=\partial C_t^h/\partial z_r\). The exact recurrence used in the code is
+Let $C_r=\partial C(z)/\partial z_r$ and $D_{r,h}=\partial C_t^h/\partial z_r$. The exact recurrence used in the code is
 
 $$
 D_{r,0}=0,\qquad
 D_{r,h}=C_rC_t^{h-1}+C_tD_{r,h-1}.
 $$
 
-For response \(R_h=JC_t^hJ^\top\), define discounted pairwise propagation energy and its derivative by
+For response $R_h=JC_t^hJ^\top$, define discounted pairwise propagation energy and its derivative by
 
 $$
 E_{ij}=\sum_{h=1}^{H}\delta^{h-1}(R_h)_{ij}^2,
@@ -323,11 +323,11 @@ The scalar M5 factor is the Frobenius norm of the off-diagonal normalized sensit
 
 $$
 S_t(H)=\left\lVert
-\left\{\frac{\partial E_{ij}/\partial z_r}{\epsilon+E_{ij}}
-\right\}_{r,\,i\ne j}\right\rVert_F,
+\left\lbrace\frac{\partial E_{ij}/\partial z_r}{\epsilon+E_{ij}}
+\right\rbrace_{r,\thinspace i\ne j}\right\rVert_F,
 $$
 
-with \(\delta=0.95\) and \(\epsilon=10^{-10}\) by default.
+with $\delta=0.95$ and $\epsilon=10^{-10}$ by default.
 
 All factors are aligned on a common available-row sample. Degenerate columns are screened using Train only, and retained columns are standardized using Train means and standard deviations; the same transform is then applied to Validation and Test. The default constants above are declared in [`config/oos_final.json`](config/oos_final.json), and the feature construction is implemented in [`src/oos/oos_final.py`](src/oos/oos_final.py).
 
