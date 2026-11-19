@@ -203,7 +203,7 @@ $$
 using the sample standard deviation. Average correlation is the mean of all distinct pairwise Pearson correlations in the trailing 20-row sector-return window,
 
 $$
-\bar\rho_t=\frac{2}{N(N-1)}\sum_{i<j}
+\bar\rho_t=\frac{2}{N(N-1)}\sum_{i\lt j}
 \mathrm{corr}\negthinspace\left(x_{i,t-w+1:t},x_{j,t-w+1:t}\right).
 $$
 

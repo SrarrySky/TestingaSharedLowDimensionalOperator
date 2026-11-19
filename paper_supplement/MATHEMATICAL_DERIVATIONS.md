@@ -745,7 +745,7 @@ With $\pi_j=s_j^2/\sum_k s_k^2$, the effective rank is the exponential spectral 
 
 $$
 r_{\mathrm{eff}}
-=\exp\negthinspace\left(-\sum_{j:\pi_j>0}\pi_j\log\pi_j\right).
+=\exp\negthinspace\left(-\sum_{j:\pi_j\gt 0}\pi_j\log\pi_j\right).
 \tag{8.5}
 $$
 
@@ -998,7 +998,7 @@ $$
 \tag{11.4}
 $$
 
-For a non-normal matrix, eigenvectors need not be orthogonal, and $\Vert C_0^h\Vert_2$ can exceed one for finite $h$ even when $\rho(C_0)<1$. Therefore the companion-radius gate is an asymptotic frozen stability diagnostic, not a guarantee against finite-horizon amplification.
+For a non-normal matrix, eigenvectors need not be orthogonal, and $\Vert C_0^h\Vert_2$ can exceed one for finite $h$ even when $\rho(C_0)\lt 1$. Therefore the companion-radius gate is an asymptotic frozen stability diagnostic, not a guarantee against finite-horizon amplification.
 
 ## 12. Proposition 3: exact frozen-versus-chronological decomposition
 
@@ -1245,10 +1245,10 @@ a(z_t)\mid\mathcal F_t
 \tag{15.6}
 $$
 
-Therefore, when $b^\top P_tb>0$,
+Therefore, when $b^\top P_tb\gt 0$,
 
 $$
-\Pr(a(z_t)>0\mid\mathcal F_t)
+\Pr(a(z_t)\gt 0\mid\mathcal F_t)
 =\Phi\negthinspace\left(
 \frac{a_0+b^\top m_t}{\sqrt{b^\top P_tb}}
 \right).
@@ -1330,7 +1330,7 @@ R_{A\to B}=1-\frac{\overline\ell_B}{\overline\ell_A}.
 \tag{16.7}
 $$
 
-Thus $R_{A\to B}>0$ means that the candidate has lower MSE, while a negative value means that adding the candidate feature block increases MSE.
+Thus $R_{A\to B}\gt 0$ means that the candidate has lower MSE, while a negative value means that adding the candidate feature block increases MSE.
 
 ### 16.4 Paired moving-block percentile interval
 
