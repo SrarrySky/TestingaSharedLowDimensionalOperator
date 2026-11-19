@@ -53,7 +53,7 @@ Let
 - $x_t\in\mathbb R^N$ be the standardized sector-return vector;
 - $u_t\in\mathbb R^q$ be the observed covariate vector;
 - $z_t\in\mathbb R^d$ be the latent operator state;
-- $A_\ell(z_t)\in\mathbb R^{N\times N}$ be the lag-$\ell$ operator;
+- $A_\ell(z_t)\in\mathbb R^{N\times N}$ be the lag $\ell$ operator;
 - $\eta_t\sim\mathcal N(0,Q)$ and $\varepsilon_t\sim\mathcal N(0,R)$ be mutually independent state and observation innovations.
 
 The model is
@@ -76,7 +76,7 @@ x_t=c+\sum_{\ell=1}^L A_\ell(z_t)x_{t-\ell}
 \tag{1.3}
 $$
 
-The lagged returns in (1.3) are already observed when the time-$t$ conditional distribution is formed. Consequently, conditional on the past returns and the supplied covariate path, (1.3) is a linear Gaussian observation equation in $z_t$, even though the joint model contains products of a latent state and lagged returns.
+The lagged returns in (1.3) are already observed when the conditional distribution at time $t$ is formed. Consequently, conditional on the past returns and the supplied covariate path, (1.3) is a linear Gaussian observation equation in $z_t$, even though the joint model contains products of a latent state and lagged returns.
 
 For ex-ante prediction, write $\mathcal F_{t-1}$ for the information available immediately before recording the forecast for date $t$. The paper uses the deterministic persistence plug-in
 
@@ -232,7 +232,7 @@ $$
 
 which is algebraically equal to (3.9) when $K_t$ is given by (3.8).
 
-The date-$t$ conditional Gaussian log likelihood contribution is
+The conditional Gaussian log likelihood contribution at date $t$ is
 
 $$
 \ell_t
@@ -351,7 +351,7 @@ Define the augmented predictor
 $$
 \xi_t=\begin{bmatrix}z_{t-1}\cr u_t\end{bmatrix},
 \qquad
-W=[F\thickspace G].
+W=[F\;G].
 \tag{5.3}
 $$
 

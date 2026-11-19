@@ -196,7 +196,7 @@ Each model contains all factors in the preceding model:
 The broad-market return is $r_t^{mkt}=P_t/P_{t-1}-1$. With the default window $w=20$, realized volatility is
 
 $$
-RV_t=\sqrt{252}\thickspace\mathrm{sd}
+RV_t=\sqrt{252}\;\mathrm{sd}
 \left(r_{t-w+1}^{mkt},\ldots,r_t^{mkt}\right),
 $$
 
@@ -217,7 +217,7 @@ $$
 p_{t,k}=\Pr(s_t=k\mid\mathcal I_t),\qquad k=1,\ldots,K-1.
 $$
 
-Only $K-1$ probabilities enter the regression because the probabilities sum to one and the regression includes an intercept. These are close-$t$ filtered probabilities, not backward-smoothed probabilities.
+Only $K-1$ probabilities enter the regression because the probabilities sum to one and the regression includes an intercept. These are one-sided filtered probabilities at date $t$, not backward-smoothed probabilities.
 
 #### M2: conventional dynamic benchmarks
 
